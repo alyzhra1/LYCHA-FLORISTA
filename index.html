@@ -371,9 +371,28 @@ header {
             }
 
             .btn-add-cart, .btn-checkout {
-                font-size: 0.9rem;
+                font-size: 0.5rem;
             }
-        }
+            .logo {
+              font-size: 1rem;
+              font-weight: 600;
+            }
+            .btn-nav {
+              padding: 0.3rem o.8rem;
+              border-radius: 0.40rem;
+              font-weight: 400;
+              cursor: pointer;
+              transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+              user-select: none;
+              font-size: o.5rem;
+            }
+            .btn-nav:hover, .btn-nav:focus {
+              background-color: var(--green-soft);
+              color: var(--white);
+              outline: none;
+              transform: scale(0.80);
+            }
+          }
 
 .nav-left,
 .nav-right {
