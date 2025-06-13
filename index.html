@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>LYCHA FLORISTA</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat+Brush&family=Caveat:wght@400..700&display=swap" rel="stylesheet">
+
+<style>
+
+.caveat-brush-regular {
+  font-family: "Caveat Brush", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+header {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--green-600);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.nav-left,
+.nav-right {
+  min-width: 80px;
+}
+
+    :root {
+      --green-soft: #a8d5ba;
+      --green-600: #4a7c59;
+      --green-400: #7ca982;
+      --gray-700: #374151;
+      --gray-500: #6b7280;
+      --gray-300: #ffffff;
+      --white: #ECF8ED;
+      --black: #111827;
+      --shadow-light: rgba(0,0,0,0.08);
+      --shadow-md: rgba(0,0,0,0.12);
+    }
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    body {
+      font-family:"Caveat Brush", cursive;
+      margin: 0;
+      background: var(--white);
+      color: var(--gray-700);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .container {
+      max-width: 1200px;
+      width: 90%;
+      margin-left: auto;
+      margin-right: auto;
+      flex-grow: 1;
+      padding: 1rem 0 4rem;
+    }
+    h1, h2 {
+      font-weight: 700;
+      color: var(--green-600);
+      margin-top: 0;
+      margin-bottom: 1rem;
+      font-size: 48px;
+    }
+    header {
+      position: sticky;
+      top: 0;
+      background: var(--white);
+      box-shadow: 0 2px 6px var(--shadow-light);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+    }
+    .nav-left, .nav-right {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+    .btn-nav {
+      background: none;
+      border: 2px solid var(--green-soft);
+      color: var(--green-600);
+      padding: 0.5rem 1rem;
+      border-radius: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+      user-select: none;
+      font-size: 1rem;
+    }
+    .btn-nav:hover, .btn-nav:focus {
+      background-color: var(--green-soft);
+      color: var(--white);
+      outline: none;
+      transform: scale(1.05);
+    }
+    .logo {
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: var(--green-600);
+      user-select: none;
+      font-size: 2rem;
+    }
+    section.products {
+      margin-top: 2rem;
+    }
+    .category-title {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      padding-bottom: 0.25rem;
+      color: var(--green-600);
+      font-weight: 700;
+    }
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Adjust minmax value */
+  gap: 1.25rem;
+}
+
+    .product-card {
+      background: var(--white);
+      border-radius: 0.75rem;
+      box-shadow: 0 2px 8px var(--shadow-md);
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: box-shadow 0.3s ease;
+    }
+    .product-card:hover {
+      box-shadow: 0 6px 15px var(--shadow-md);
+    }
+    .product-image {
+      width: 100%;
+      height: 140px;
+      object-fit: contain;
+      border-radius: 0.5rem;
+      margin-bottom: 0.75rem;
+      background-color: #f7fdfa;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.06);
+    }
+    .product-name {
+      font-weight: 600;
+      color: var(--green-600);
+      margin-bottom: 0.3rem;
+      flex-grow: 1;
+      text-align: center;
+      font-size: 1.1rem;
+    }
+    .product-price {
+      font-weight: 700;
+      color: var(--green-400);
+      margin-bottom: 0.75rem;
+      text-align: center;
+      font-size: 1.1rem;
+    }
+    .qty-selector {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .qty-btn {
+      background-color: var(--green-soft);
+      border: none;
+      border-radius: 0.5rem;
+      padding: 0.2rem 0.7rem;
+      font-size: 1.2rem;
+      font-weight: 700;
+      cursor: pointer;
+      color: var(--green-600);
+      transition: background-color 0.3s ease;
+      user-select: none;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .qty-btn:hover {
+      background-color: var(--green-600);
+      color: var(--white);
+    }
+    .qty-display {
+      min-width: 28px;
+      text-align: center;
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--gray-700);
+      user-select: none;
+    }
+    .btn-add-cart {
+      background-color: var(--green-600);
+      border: none;
+      color: var(--white);
+      padding: 0.5rem 1rem;
+      border-radius: 0.75rem;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      user-select: none;
+      width: 100%;
+    }
+    .btn-add-cart:hover {
+      background-color: var(--green-400);
+      transform: scale(1.05);
+    }
+    .cart-badge {
+      background-color: var(--green-400);
+      color: var(--white);
+      font-weight: 700;
+      font-size: 0.75rem;
+      min-width: 18px;
+      padding: 0 6px;
+      border-radius: 9999px;
+      text-align: center;
+      position: relative;
+      top: -6px;
+      left: -8px;
+      user-select: none;
+    }
+    .view {
+      display: none;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    .view.active {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .cart-items {
+      margin-top: 1rem;
+      border-top: 1px solid var(--gray-300);
+      padding-top: 1rem;
+    }
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--gray-300);
+      font-weight: 600;
+      color: var(--green-600);
+    }
+    .cart-item span {
+      flex: 1 0 50%;
+      max-width: 50%;
+    }
+    .cart-item-qty {
+      text-align: center;
+    }
+    .cart-total {
+      text-align: right;
+      margin-top: 1rem;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--green-400);
+    }
+    .btn-checkout {
+      margin-top: 1.5rem;
+      background-color: var(--green-600);
+      border: none;
+      color: var(--white);
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.75rem;
+      font-weight: 700;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      user-select: none;
+      display: block;
+      margin-left: auto;
+      max-width: 240px;
+    }
+    .btn-checkout:hover {
+      background-color: var(--green-400);
+      transform: scale(1.05);
+    }
+    .checkout-instructions {
+      margin-top: 1rem;
+      font-weight: 600;
+      color: var(--green-600);
+      font-size: 1.2rem;
+      line-height: 1.4;
+    }
+    .qr-code {
+      margin: 1.5rem auto;
+      max-width: 220px;
+      border-radius: 0.75rem;
+      filter: drop-shadow(0 0 5px var(--green-soft));
+      display: block;
+    }
+    .contact-section {
+      background: var(--green-soft);
+      color: var(--green-600);
+      text-align: center;
+      padding: 2rem 1rem;
+      border-radius: 0.75rem;
+      font-weight: 600;
+      font-size: 1.25rem;
+      margin-top: 2rem;
+      user-select: none;
+    }
+    .contact-section a {
+      color: var(--green-600);
+      text-decoration: none;
+      font-weight: 700;
+    }
+    .contact-section a:hover,
+    .contact-section a:focus {
+      text-decoration: underline;
+      outline: none;
+    }
+    
+header {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--green-600);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+            h1 {
+                font-size: 36px;
+            }
+            h2 {
+                font-size: 24px;
+            }
+            .btn-nav {
+                font-size: 0.9rem;
+            }
+            .product-name, .product-price {
+                font-size: 1rem;
+            }
+
+            .btn-add-cart, .btn-checkout {
+                font-size: 0.9rem;
+            }
+        }
+
+.nav-left,
+.nav-right {
+  min-width: 80px;
+}
+</style>
+</head>
+<body>
+<header>
+<div class="nav-left">
+<button aria-label="Go to Home" class="btn-nav" id="btn-home" onclick="goHome()">Home</button>
+<button aria-label="Go Back" class="btn-nav" id="btn-back" onclick="goBack()">Back</button>
+</div>
+<div aria-label="Site Logo" class="logo">LYCHA FLORISTA</div>
+<div class="nav-right">
+<button aria-label="View Shopping Cart" class="btn-nav" id="btn-cart" onclick="showView('cart')">
+      🛒 Cart <span aria-atomic="true" aria-live="polite" class="cart-badge" id="cart-count" style="display:none;">0</span>
+</button>
+</div>
+</header>
+<main class="container" role="main">
+<!-- Product Selection View -->
+<section aria-label="Product selection" class="view active" id="view-home">
+<h1 class="centered-headline">Choose Your Leaves and Flowers</h1>
+<section aria-label="Leaves for sale" class="products">
+<h2 class="category-title">Leaves</h2>
+<div class="product-grid" id="leaves-list">
+<!-- Leaf products inserted here -->
+</div>
+</section>
+<section aria-label="Flowers for sale" class="products">
+<h2 class="category-title">Flowers</h2>
+<div class="product-grid" id="flowers-list">
+<!-- Flower products inserted here -->
+</div>
+</section>
+</section>
+<!-- Shopping Cart View -->
+<section aria-label="Shopping cart" class="view" id="view-cart">
+<h1>Your Shopping Bag</h1>
+<div aria-atomic="true" aria-live="polite" class="cart-items" id="cart-items"></div>
+<div aria-label="Total price" class="cart-total" id="cart-total">Total: RM 0.00</div>
+<button class="btn-checkout" id="btn-checkout" onclick="proceedToCheckout()">Proceed to Checkout</button>
+</section>
+<!-- Checkout View -->
+<section aria-label="Checkout and Payment" class="view" id="view-checkout">
+<h1>Checkout</h1>
+<div aria-label="Total amount to pay" class="cart-total" id="checkout-total">Total: RM 0.00</div>
+<p class="checkout-instructions">
+      Please pay by scanning the QR code below.<br/>
+      After payment, send your payment receipt image to our WhatsApp number:
+      <a aria-label="WhatsApp contact +60 13 480 7041" href="https://wa.me/60134807041" rel="noopener" target="_blank">+60 13 480 7041</a>
+</p>
+<img height="200" src="./images/qr.png" width="200"/>
+</section>
+<!-- Contact Section -->
+<section aria-label="Contact Information" class="contact-section">
+<p>CONTACT ME</p>
+<p>WhatsApp: <a href="https://wa.me/60134807041" rel="noopener" target="_blank">+60 13 480 7041</a></p>
+<p>Email: <a href="mailto:alyzhra1@gmail.com">alyzhra1@gmail.com</a></p>
+</section>
+</main>
+<script>
+  const leavesData = [
+    { id: 'leaf01', name: 'Eucalyptus', price: 2.00, image: 'images/leaves/Eucalyptus.jpg' },
+    { id: 'leaf02', name: 'Reniform', price: 4.00, image: 'images/leaves/Reniform.jpg' },
+    { id: 'leaf03', name: 'Spiral', price: 1.00, image: 'images/leaves/Spiral.jpg' },
+    { id: 'leaf04', name: 'Linear', price: 1.00, image: 'images/leaves/Linear.jpg' },
+    { id: 'leaf05', name: 'White Ash', price: 5.00, image: 'images/leaves/White Ash.jpg' },
+    { id: 'leaf06', name: 'Paddy', price: 4.00, image: 'images/leaves/Paddy.jpg' },
+  ];
+  const flowersData = [
+    { id: 'flw01', name: 'Mini Daisy', price: 1.00, image: 'images/flowers/minidaisy.jpg' },
+    { id: 'flw02', name: 'Daisy [S]', price: 2.00, image: 'images/flowers/daisyS.jpg' },
+    { id: 'flw03', name: 'Daisy [L]', price: 8.00, image: 'images/flowers/daisyL.jpg' },
+    { id: 'flw04', name: 'Lavender', price: 7.00, image: 'images/flowers/lavender.jpg' },
+    { id: 'flw05', name: 'Lily of the valley', price: 9.00, image: 'images/flowers/lilyofthevalley.jpg' },
+    { id: 'flw06', name: 'Baby Breath', price: 6.00, image: 'images/flowers/babybreath.jpg' },
+    { id: 'flw07', name: 'Sunflower [M]', price: 8.00, image: 'images/flowers/sunflowerM.jpg' },
+    { id: 'flw08', name: 'Sunflower [L]', price: 10.00, image: 'images/flowers/sunflowerL.jpg' },
+    { id: 'flw09', name: 'Gerbera', price: 8.00, image: 'images/flowers/gerbera.jpg' },
+    { id: 'flw10', name: 'Lily', price: 8.00, image: 'images/flowers/lily.jpg' },
+    { id: 'flw11', name: 'Plumeria', price: 7.00, image: 'images/flowers/plumeria.jpg' },
+    { id: 'flw12', name: 'Poppy', price: 7.00, image: 'images/flowers/poppy.jpg' },
+    { id: 'flw13', name: 'Hibiscus', price: 8.00, image: 'images/flowers/hibiscus.jpg' },
+    { id: 'flw14', name: 'Tulip', price: 8.00, image: 'images/flowers/tulip.jpg' },
+    { id: 'flw15', name: 'Calla Lily', price: 7.00, image: 'images/flowers/callalily.jpg' },
+    { id: 'flw16', name: 'Hydrangea', price: 8.00, image: 'images/flowers/hydrangea.jpg' },
+    { id: 'flw17', name: 'Carnation', price: 7.00, image: 'images/flowers/carnation.jpg' },
+    { id: 'flw18', name: 'Lotus', price: 12.00, image: 'images/flowers/lotus.jpg' },
+    { id: 'flw19', name: 'Lady Rose', price: 9.00, image: 'images/flowers/ladyrose.jpg' },
+    { id: 'flw20', name: 'Spiral Rose', price: 8.00, image: 'images/flowers/spiralrose.jpg' },
+    { id: 'flw21', name: 'Tiger Lily', price: 8.00, image: 'images/flowers/tigerlily.jpg' },
+    { id: 'flw22', name: 'Poppy Daisy', price: 15.00, image: 'images/flowers/poppydaisy.jpg' },
+    { id: 'flw23', name: 'Orchid', price: 18.00, image: 'images/flowers/orchid.jpg' },
+    { id: 'flw24', name: 'Peony [L]', price: 15.00, image: 'images/flowers/peonyL.jpg' },
+  ];
+
+  let cart = {};
+  let currentView = 'home';
+  const viewHistory = [];
+
+  function showView(viewId) {
+    if (currentView !== viewId) {
+      viewHistory.push(currentView);
+    }
+    ['view-home', 'view-cart', 'view-checkout'].forEach(id => {
+      document.getElementById(id).classList.toggle('active', id === 'view-' + viewId);
+    });
+    currentView = viewId;
+    if(viewId === 'cart') renderCart();
+    else if(viewId === 'checkout') renderCheckout();
+  }
+  function goBack() {
+    if(viewHistory.length) {
+      showView(viewHistory.pop());
+    }
+  }
+  function goHome() {
+    viewHistory.length = 0;
+    showView('home');
+  }
+
+  // Render product cards with inline HTML instead of JS DOM for leaves and flowers
+  // Using innerHTML for simplicity and clarity here
+
+  function renderProducts() {
+    const leavesContainer = document.getElementById('leaves-list');
+    const flowersContainer = document.getElementById('flowers-list');
+
+    leavesContainer.innerHTML = leavesData.map(product => `
+      <article class="product-card" tabindex="0">
+        <img src="${product.image}" alt="${product.name} image" class="product-image" loading="lazy" />
+        <div class="product-name">${product.name}</div>
+        <div class="product-price">RM ${product.price.toFixed(2)}</div>
+        <div class="qty-selector" aria-label="Quantity selector for ${product.name}">
+          <button class="qty-btn btn-dec" data-id="${product.id}" aria-label="Decrease quantity">−</button>
+          <div class="qty-display" id="qty-display-${product.id}">0</div>
+          <button class="qty-btn btn-inc" data-id="${product.id}" aria-label="Increase quantity">+</button>
+        </div>
+        <button class="btn-add-cart" data-id="${product.id}" aria-label="Add selected quantity of ${product.name} to cart">Add to Cart</button>
+      </article>
+    `).join('');
+
+    flowersContainer.innerHTML = flowersData.map(product => `
+      <article class="product-card" tabindex="0">
+        <img src="${product.image}" alt="${product.name} image" class="product-image" loading="lazy" />
+        <div class="product-name">${product.name}</div>
+        <div class="product-price">RM ${product.price.toFixed(2)}</div>
+        <div class="qty-selector" aria-label="Quantity selector for ${product.name}">
+          <button class="qty-btn btn-dec" data-id="${product.id}" aria-label="Decrease quantity">−</button>
+          <div class="qty-display" id="qty-display-${product.id}">0</div>
+          <button class="qty-btn btn-inc" data-id="${product.id}" aria-label="Increase quantity">+</button>
+        </div>
+        <button class="btn-add-cart" data-id="${product.id}" aria-label="Add selected quantity of ${product.name} to cart">Add to Cart</button>
+      </article>
+    `).join('');
+  }
+
+  // Track quantities selected before adding to cart
+  const selectedQuantities = {};
+
+  function updateQtyDisplay(id) {
+    const elem = document.getElementById('qty-display-' + id);
+    if (elem) {
+      elem.textContent = selectedQuantities[id] || 0;
+    }
+  }
+
+  // Helper to find product by id
+  function findProduct(id) {
+    return leavesData.find(p => p.id === id) || flowersData.find(p => p.id === id);
+  }
+
+  // Add to cart
+  function addToCart(id, qty) {
+    if (!qty || qty < 1) return;
+    if(cart[id]){
+      cart[id].quantity += qty;
+    } else {
+      const product = findProduct(id);
+      if(!product) return;
+      cart[id] = { item: product, quantity: qty };
+    }
+  }
+
+  // Update cart badge count
+  function updateCartCount() {
+    const count = Object.values(cart).reduce((acc,v) => acc + v.quantity, 0);
+    const badge = document.getElementById('cart-count');
+    if(count > 0){
+      badge.style.display = 'inline-block';
+      badge.textContent = count;
+    } else {
+      badge.style.display = 'none';
+      badge.textContent = '';
+    }
+  }
+
+  // Render cart page
+  function renderCart() {
+    const container = document.getElementById('cart-items');
+    container.innerHTML = '';
+    if(Object.keys(cart).length === 0){
+      container.innerHTML = '<p>Your cart is empty.</p>';
+      document.getElementById('cart-total').textContent = 'Total: RM 0.00';
+      return;
+    }
+    let total = 0;
+    Object.values(cart).forEach(({item, quantity}) => {
+      const subtotal = item.price * quantity;
+      total += subtotal;
+      const div = document.createElement('div');
+      div.className = 'cart-item';
+      div.innerHTML = `
+        <span>${item.name}</span>
+        <span class="cart-item-qty">Qty: ${quantity}</span>
+        <span>RM ${subtotal.toFixed(2)}</span>
+      `;
+      container.appendChild(div);
+    });
+    document.getElementById('cart-total').textContent = `Total: RM ${total.toFixed(2)}`;
+  }
+
+  // Render checkout page with total
+  function renderCheckout() {
+    let total = 0;
+    Object.values(cart).forEach(({item, quantity}) => {
+      total += item.price * quantity;
+    });
+    document.getElementById('checkout-total').textContent = `Total: RM ${total.toFixed(2)}`;
+    document.getElementById('qr-code-img').src = ''; // placeholder, user adds later
+  }
+
+  // Event delegation for buttons
+  document.body.addEventListener('click', e => {
+    if(e.target.matches('.btn-inc')) {
+      const id = e.target.dataset.id;
+      const current = selectedQuantities[id] || 0;
+      selectedQuantities[id] = current + 1;
+      updateQtyDisplay(id);
+    }
+    if(e.target.matches('.btn-dec')) {
+      const id = e.target.dataset.id;
+      const current = selectedQuantities[id] || 0;
+      if(current > 0){
+        selectedQuantities[id] = current - 1;
+        updateQtyDisplay(id);
+      }
+    }
+    if(e.target.matches('.btn-add-cart')){
+      const id = e.target.dataset.id;
+      const qty = selectedQuantities[id] || 0;
+      if(qty < 1){
+        alert('Please select at least 1 quantity before adding to cart.');
+        return;
+      }
+      addToCart(id, qty);
+      selectedQuantities[id] = 0;
+      updateQtyDisplay(id);
+      updateCartCount();
+    }
+    if(e.target.id === 'btn-checkout'){
+      if(Object.keys(cart).length === 0){
+        alert('Your shopping bag is empty!');
+      } else {
+        showView('checkout');
+      }
+    }
+  });
+
+  function proceedToCheckout(){
+    if(Object.keys(cart).length === 0){
+      alert('Your shopping bag is empty!');
+    } else {
+      showView('checkout');
+    }
+  }
+
+  // Initialize page
+  window.onload = () => {
+    renderProducts();
+    updateCartCount();
+    showView('home');
+  };
+</script>
+</body>
+</html>
